@@ -11,9 +11,9 @@ namespace empPayroll
             EmployeeRepo repo = new EmployeeRepo();
             EmployeeModel employee = new EmployeeModel();
 
-            employee.EmployeeName = "Rita";
+            employee.EmployeeName = "Jhon";
             employee.PhoneNumber = "4534545487";
-            employee.Address = "Chennai";
+            employee.Address = "Delhi";
             employee.Department = "HR";
             employee.Gender = "F";
             employee.BasicPay = 3500.00;
@@ -22,11 +22,12 @@ namespace empPayroll
             employee.Tax = 345.5;
             employee.NetPay = 4000.00;
             employee.StartDate = DateTime.Now;
-            employee.City = "Chennai";
+            employee.City = "Delhi";
             employee.Country = "Indian";
 
 
-            repo.AddEmploye(employee);
+            //repo.AddEmploye(employee);
+            repo.GetAllEmployee();
         }
     }
 }

@@ -52,6 +52,48 @@ namespace empPayroll
             { 
                 connection.Close();
             }
+            
+        }
+
+        public void GetAllEmployee()
+        {
+            try
+            {
+                EmployeeModel employeeModel = new EmployeeModel();
+                using (this.connection)
+                {
+                    string query = @"select empId,empName,Address,phoneNumber,Department,Gender,BasicPay,reduction,taxablePay,
+                    Tax,NetPay,startDate,city,country from employee_payroll";
+                    SqlCommand cmd = new SqlCommand(query,this.connection);
+                    this.connection.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        while(dr.Read())
+                        {
+                            employeeModel.EmployeeId = dr.GetInt32(0);
+                            employeeModel.EmployeeName = dr.GetString(1);
+                            employeeModel.Address = dr.GetString(2);
+                            employeeModel.PhoneNumber = dr.GetString(3);
+                            
+                            employeeModel.Department=dr.GetString(4);
+
+                            Console.WriteLine("{0},{1},{2},{3}",employeeModel.EmployeeId,employeeModel.EmployeeName,employeeModel.PhoneNumber,
+                            employeeModel.Address,employeeModel.Department);
+
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+                this.connection.Close();
+            }
         }
     }
 }
